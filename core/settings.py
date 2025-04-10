@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'main_app',
-    'whitenoise.runserver_nostatic',
+   # 'whitenoise.runserver_nostatic',
 ]
 
 SITE_ID = 1
