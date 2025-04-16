@@ -1,0 +1,24 @@
+.menu-spacing .nav-item {
+    margin: 0 40px; 
+    margin-top: 10px;
+  }
+  
+  .menu-spacing img {
+    margin: 0 10px;
+    margin-top: -20px;
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: center;  /* Centraliza horizontalmente */
+    align-items: flex-start;  /* Alinha o vídeo no topo (subindo-o) */
+    height: 100vh;  /* Ocupa toda a altura da janela */
+    margin-top: -200px;
+  }
+  
+  .mvideo {
+    max-width: 1920px;  /* Limita a largura do vídeo */
+    max-height: 1080px; /* Limita a altura do vídeo */
+    width: 100%;        /* Faz o vídeo se ajustar responsivamente */
+    height: auto;       /* Mantém a proporção do vídeo */
+  }

@@ -33,6 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -46,7 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'main_app',
-   # 'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',
 ]
 
 SITE_ID = 1
@@ -88,10 +89,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,  # boa prática
-    )
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 AUTHENTICATION_BACKENDS = [

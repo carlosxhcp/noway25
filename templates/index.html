@@ -19,30 +19,42 @@
 </head>
 <body>
 
-  <nav class="justify-center navbar navbar-expand-lg navbar-light bg-dark">
+  <nav class="justify-center navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
+        <ul class="navbar-nav mx-auto menu-spacing">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">INICIO</a>
+            <a class="nav-link" aria-current="page" href="#">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">LOJA</a>
-          </li>
-          <img src="{%static "main_app/img/logo.png"%}" width="100px" alt="">
-          <li class="nav-item">
+            <a class="nav-link" href="#">SHOP</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link logo-link" href="#">
+              <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">LOOKBOOK</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">HELP</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+<div class="video-container">
+  <video class='mvideo' width="1000" height="1000" autoplay muted>
+    <source src="{% static 'main_app/video/noway.mp4' %}" type="video/mp4">
+    Seu navegador não suporta a tag de vídeo.
+  </video>
+</div>
 
   <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,7 +65,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Modal body text goes here.
+        sexo
       </div>
       <div class="modal-footer">
         <a href="{% url "account_signup" %}"><button type="button" class="btn btn-primary">Save changes</button></a>
