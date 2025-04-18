@@ -4,14 +4,25 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import NewsletterSubscriber
+from django.contrib.auth.decorators import login_required
+
+
 
 # Create your views here.
+
+
+
+
 def index(request):
     return render(request, 'index.html')
 
-def my_view(request):
-    form = LoginForm()
-    return render(request, 'index.html', {'form': form})
+
+
+def shop(request):
+    return render(request, 'shop.html')
+
+
+
 
 @csrf_exempt  # se você não estiver usando CSRF token, mas depois podemos melhorar isso!
 def inscrever_newsletter(request):

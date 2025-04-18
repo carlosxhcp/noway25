@@ -1,5 +1,6 @@
 from django.urls import path
 from main_app.views import inscrever_newsletter
+from main_app.views import shop
 
 urlpatterns = [
     # outras rotas...
