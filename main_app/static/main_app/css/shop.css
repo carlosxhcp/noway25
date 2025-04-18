@@ -1,0 +1,50 @@
+/* Remove margem padrão do body */
+body {
+  background-image: url("../img/shop/background2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+.mock1 {
+    background-image: url("../img/shop/mock1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .mock1:hover {
+    background-image: url("../img/shop/mock1b.png"); /* Imagem do hover */
+  }
+  
+  .mock2 {
+    background-image: url("../img/shop/mock2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .mock2:hover {
+    background-image: url("../img/shop/mock2b.png"); /* Imagem do hover */
+  }
+  
+  .mock3 {
+    background-image: url("../img/shop/mock3.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .mock3:hover {
+    background-image: url("../img/shop/mock3b.png"); /* Imagem do hover */
+  }
+  
