@@ -9,28 +9,24 @@
 }
 
 .navbar-nav .nav-item .nav-link {
-  font-size: 23px;
-  color: black;  /* Altere o tamanho da fonte conforme necessário */
+  font-size: 15px;
+  color: black; 
 }
 
-.video-container {
-  display: flex;
-  justify-content: center;
-  /* Centraliza horizontalmente */
-  align-items: flex-start;
-  /* Alinha o vídeo no topo (subindo-o) */
+.navbar {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.wallpaper-container {
+  background-image: url('/static/main_app/img/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
   height: 100vh;
-  /* Ocupa toda a altura da janela */
-  margin-top: -200px;
-}
-
-.mvideo {
-  max-width: 1920px;
-  /* Limita a largura do vídeo */
-  max-height: 1080px;
-  /* Limita a altura do vídeo */
   width: 100%;
-  /* Faz o vídeo se ajustar responsivamente */
-  height: auto;
-  /* Mantém a proporção do vídeo */
+  margin-top: -100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
 }

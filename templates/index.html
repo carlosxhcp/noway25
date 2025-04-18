@@ -1,93 +1,191 @@
-{% load static %}
+{% load static %} {% load account %}
 
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <title>NOWAY</title>
-  <link rel="stylesheet" href="{% static 'main_app/css/index.css' %}">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NOWAY</title>
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+    <link rel="stylesheet" href="{% static 'main_app/css/index.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      setTimeout(function() {
-        $('#myModal').modal('show');
-      }, 1000); // 1000 milissegundos = 1 segundo
-    });
-  </script>
-</head>
-<body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          $("#myModal").modal("show");
+        }, 1000); // 1000 milissegundos = 1 segundo
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="justify-center navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto menu-spacing">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">SHOP</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link logo-link" href="#">
+                <img
+                  src="{% static 'main_app/img/logo.png' %}"
+                  width="100px"
+                  alt=""
+                />
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">LOOKBOOK</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">HELP</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-  <nav class="justify-center navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+    <div class="wallpaper-container"></div>
+
+    <!-- Modal 1: Inscrição -->
+    <div
+      class="modal fade"
+      id="newsletterModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <form id="newsletterForm">
+            <div class="modal-header">
+              <h5 class="modal-title">Inscreva-se</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Fechar"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nomeInput" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nomeInput"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailInput"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Agradecimento -->
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-body text-center p-4">
+            <h5 class="mb-3">🎉 Obrigado!</h5>
+            <p>Você foi inscrito com sucesso na nossa newsletter.</p>
+            <button
+              type="button"
+              class="btn btn-success mt-3"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("newsletterForm");
+        const newsletterModal = new bootstrap.Modal(
+          document.getElementById("newsletterModal")
+        );
+        const thankYouModal = new bootstrap.Modal(
+          document.getElementById("thankYouModal")
+        );
       
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto menu-spacing">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">SHOP</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link logo-link" href="#">
-              <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">LOOKBOOK</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">HELP</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-<div class="video-container">
-  <video class='mvideo' width="1000" height="1000" autoplay muted loop>
-    <source src="{% static 'main_app/video/noway.mp4' %}" type="video/mp4">
-    Seu navegador não suporta a tag de vídeo.
-  </video>
-</div>
-
-  <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-x1">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        sexo
-      </div>
-      <div class="modal-footer">
-        <a href="{% url "account_signup" %}"><button type="button" class="btn btn-primary">Save changes</button></a>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Script para exibir o modal 1x por sessão -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!sessionStorage.getItem('modalShown')) {
-      setTimeout(function () {
-        const myModal = new bootstrap.Modal(document.getElementById('myModal'));
-        myModal.show();
-        sessionStorage.setItem('modalShown', 'true');
-      }, 1000); // 1 segundo
-    }
-  });
-</script>
- 
-
-</body>
+        // Abre o modal uma vez por sessão
+        if (!sessionStorage.getItem("newsletterShown")) {
+          setTimeout(() => {
+            newsletterModal.show();
+            sessionStorage.setItem("newsletterShown", "true");
+          }, 1000);
+        }
+      
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+      
+          const nome = document.getElementById("nomeInput").value;
+          const email = document.getElementById("emailInput").value;
+      
+          fetch(
+            "https://kxtlacebeybfggufdsjq.supabase.co/rest/v1/newsletter",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dGxhY2ViZXliZmdndWZkc2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzMDI3NzAsImV4cCI6MjA1OTg3ODc3MH0.UhAKHrZ7y_QZAgSXVWp2BcAVquuiGX4sMXetYRmm5IQ",  // Substitua pela chave pública da sua API
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dGxhY2ViZXliZmdndWZkc2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzMDI3NzAsImV4cCI6MjA1OTg3ODc3MH0.UhAKHrZ7y_QZAgSXVWp2BcAVquuiGX4sMXetYRmm5IQ",  // Substitua pela chave pública da sua API
+                Prefer: "return=minimal",
+              },
+              body: JSON.stringify({
+                nome: nome,
+                email: email,
+                created_at: new Date().toISOString(),
+              }),
+            }
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Erro ao salvar no Supabase.");
+              }
+              newsletterModal.hide();
+              setTimeout(() => thankYouModal.show(), 500);
+            })
+            .catch((error) => {
+              alert("Ocorreu um erro: " + error.message);
+              console.error(error);
+            });
+        });
+      });
+      
+    </script>
+  </body>
 </html>
