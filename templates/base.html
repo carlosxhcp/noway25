@@ -21,8 +21,11 @@
         }, 1000); // 1000 milissegundos = 1 segundo
       });
     </script>
+
   </head>
   <body>
+
+    <!-- Menu do site -->
     <nav class="justify-center navbar navbar-expand-lg">
       <div class="container-fluid">
         <button
@@ -63,15 +66,43 @@
         </div>
       </div>
     </nav>
+    <!-- Fim do menu -->
 
+    
+    <!-- Conteúdo das páginas -->
     <main>
         {% block content %}
-        <!-- Conteúdo das páginas vai aqui -->
         {% endblock %}
     </main>
+    <!--Fim do conteudo das paginas-->
 
-    <footer>
-        <p> </p>
+
+    <!--Rodape-->
+    <footer class="rodape bg-dark text-light">
+      <div class="container-fluid py-3">
+        <div class="row">
+          <div class="col">
+            <ul class="nav flex-row">
+              <li class="nav-item"><a class="nav-link text-light" href="#">Retornar à Loja</a></li>
+              <li class="nav-item"><a class="nav-link text-light" href="#">Sobre</a></li>
+              <li class="nav-item"><a class="nav-link text-light" href="#">Contato</a></li>
+              <li class="nav-item"><a class="nav-link text-light" href="#">Suporte</a></li>
+            </ul>
+          </div>
+          <div class="col-8">
+            <ul class="nav justify-content-end flex-row">
+              <li class="nav-item"><i class="fab fa-facebook fa-3x text-light"></i></li>
+              <li class="nav-item mx-2"><i class="fab fa-instagram fa-3x text-light"></i></li>
+              <li class="nav-item mx-2"><i class="fab fa-twitter fa-3x text-light"></i></li>
+              <li class="nav-item"><i class="fab fa-whatsapp fa-3x text-light"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="background-color: #333; padding: 20px;">
+        &copy; 2025 Noway
+      </div>
     </footer>
+    <!--Fim do rodape-->
 </body>
 </html>
