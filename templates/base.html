@@ -42,12 +42,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto menu-spacing">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{% url "index" %}">HOME</a>
+              <a class="nav-link menu-link" aria-current="page" href="{% url "index" %}">HOME</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "shop" %}">SHOP</a>
+            <li class="nav-item menu-link">
+              <a class="nav-link menu-link" href="{% url "shop" %}">SHOP</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link logo-link" href="#">
                 <img
                   src="{% static 'main_app/img/logo.png' %}"
@@ -57,10 +57,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">LOOKBOOK</a>
+              <a class="nav-link menu-link" aria-current="page" href="#">LOOKBOOK</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">ACOUNT</a>
+              <a class="nav-link menu-link" href="#">ACOUNT</a>
             </li>
           </ul>
         </div>
@@ -68,7 +68,7 @@
     </nav>
     <!-- Fim do menu -->
 
-    
+
     <!-- Conteúdo das páginas -->
     <main>
         {% block content %}
@@ -78,28 +78,21 @@
 
 
     <!--Rodape-->
-    <footer class="rodape bg-dark text-light">
-      <div class="container-fluid py-3">
+    <footer class="rodape fixed-bottom">
+      <div class="container-fluid py-1">
         <div class="row">
           <div class="col">
             <ul class="nav flex-row">
-              <li class="nav-item"><a class="nav-link text-light" href="#">Retornar à Loja</a></li>
-              <li class="nav-item"><a class="nav-link text-light" href="#">Sobre</a></li>
-              <li class="nav-item"><a class="nav-link text-light" href="#">Contato</a></li>
-              <li class="nav-item"><a class="nav-link text-light" href="#">Suporte</a></li>
+              <li class="nav-item"><a class="nav-link footer-link" href="#">Shop</a></li>
+              <li class="nav-item"><a class="nav-link footer-link" href="#">Lookbook</a></li>
+              <li class="nav-item"><a class="nav-link footer-link" href="#">About Us</a></li>
+              <li class="nav-item"><a class="nav-link footer-link" href="#">Help</a></li>
             </ul>
           </div>
-          <div class="col-8">
-            <ul class="nav justify-content-end flex-row">
-              <li class="nav-item"><i class="fab fa-facebook fa-3x text-light"></i></li>
-              <li class="nav-item mx-2"><i class="fab fa-instagram fa-3x text-light"></i></li>
-              <li class="nav-item mx-2"><i class="fab fa-twitter fa-3x text-light"></i></li>
-              <li class="nav-item"><i class="fab fa-whatsapp fa-3x text-light"></i></li>
-            </ul>
-          </div>
+          
         </div>
       </div>
-      <div class="text-center" style="background-color: #333; padding: 20px;">
+      <div class="text-center" style="background-color: #000; padding: 20px;">
         &copy; 2025 Noway
       </div>
     </footer>
