@@ -21,10 +21,9 @@
         }, 1000); // 1000 milissegundos = 1 segundo
       });
     </script>
-
   </head>
-  <body>
 
+  <body class="d-flex flex-column min-vh-100">
     <!-- Menu do site -->
     <nav class="justify-center navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -68,34 +67,31 @@
     </nav>
     <!-- Fim do menu -->
 
-
     <!-- Conteúdo das páginas -->
-    <main>
-        {% block content %}
-        {% endblock %}
+    <main class="flex-fill">
+      {% block content %}
+      {% endblock %}
     </main>
-    <!--Fim do conteudo das paginas-->
+    <!-- Fim do conteúdo das páginas -->
 
-
-    <!--Rodape-->
-    <footer class="rodape fixed-bottom">
-      <div class="container-fluid py-1">
+    <!-- Rodapé -->
+    <footer class="rodape text-light py-3">
+      <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <ul class="nav flex-row">
+            <ul class="nav flex-row justify-content-center">
               <li class="nav-item"><a class="nav-link footer-link" href="#">Shop</a></li>
               <li class="nav-item"><a class="nav-link footer-link" href="#">Lookbook</a></li>
               <li class="nav-item"><a class="nav-link footer-link" href="#">About Us</a></li>
               <li class="nav-item"><a class="nav-link footer-link" href="#">Help</a></li>
             </ul>
           </div>
-          
         </div>
       </div>
       <div class="text-center" style="background-color: #000; padding: 20px;">
         &copy; 2025 Noway
       </div>
     </footer>
-    <!--Fim do rodape-->
-</body>
+    <!-- Fim do rodapé -->
+  </body>
 </html>
