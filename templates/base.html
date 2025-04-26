@@ -61,21 +61,22 @@
             <li class="nav-item">
               <a class="nav-link menu-link" href="{%url 'account_signup'%}">ACOUNT</a>
             </li>
+            <li class="login_btn">
+              {% if user.is_authenticated %}
+            <a  href="{% url 'perfil' %}">Meu Perfil</a> |
+            <a href="{% url 'account_logout' %}">Sair</a>
+        {% else %}
+            <a href="{% url 'account_login' %}">Entrar</a> |
+            <a href="{% url 'account_signup' %}">Criar Conta</a>
+        {% endif %}
+            </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Fim do menu -->
 
-    <header>
-      {% if user.is_authenticated %}
-    <a href="{% url 'perfil' %}">Meu Perfil</a> |
-    <a href="{% url 'account_logout' %}">Sair</a>
-{% else %}
-    <a href="{% url 'account_login' %}">Entrar</a> |
-    <a href="{% url 'account_signup' %}">Criar Conta</a>
-{% endif %}
-  </header>
+
 
 
 

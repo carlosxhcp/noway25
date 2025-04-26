@@ -60,3 +60,13 @@
 .footer-link:hover {
   color: white !important;
 }
+
+.login_btn a {
+  margin-top: 200px;
+  color: #000 !important;
+  text-decoration: none !important;
+}
+.login_btn {
+  margin-top: 20px;
+  font-family: 'Courir Prime';
+}

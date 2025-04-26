@@ -22,7 +22,7 @@ body {
     height: 500px;
   }
   
-  .mock1:hover {
+  .mock1:active {
     background-image: url("../img/shop/mock1b.png"); /* Imagem do hover */
   }
   
