@@ -59,13 +59,26 @@
               <a class="nav-link menu-link" aria-current="page" href="#">LOOKBOOK</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link menu-link" href="#">ACOUNT</a>
+              <a class="nav-link menu-link" href="{%url 'account_signup'%}">ACOUNT</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Fim do menu -->
+
+    <header>
+      {% if user.is_authenticated %}
+    <a href="{% url 'perfil' %}">Meu Perfil</a> |
+    <a href="{% url 'account_logout' %}">Sair</a>
+{% else %}
+    <a href="{% url 'account_login' %}">Entrar</a> |
+    <a href="{% url 'account_signup' %}">Criar Conta</a>
+{% endif %}
+  </header>
+
+
+
 
     <!-- Conteúdo das páginas -->
     <main class="flex-fill">
@@ -75,7 +88,7 @@
     <!-- Fim do conteúdo das páginas -->
 
     <!-- Rodapé -->
-    <footer class="rodape text-light py-3">
+    <footer class="rodape text-light py-3" style="margin-top: 200px;">
       <div class="container-fluid">
         <div class="row">
           <div class="col">

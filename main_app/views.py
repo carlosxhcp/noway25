@@ -43,3 +43,7 @@ def inscrever_newsletter(request):
             return JsonResponse({"success": False, "error": str(e)}, status=500)
 
     return JsonResponse({"success": False, "error": "Método não permitido"}, status=405)
+
+@login_required
+def perfil(request):
+    return render(request, 'perfil.html')

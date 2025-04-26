@@ -5,13 +5,16 @@ from main_app.views import index
 from main_app.views import shop
 from django.conf import settings
 from django.conf.urls.static import static
+from main_app.views import perfil
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', index,name='index'),
-    path('shop', shop, name='shop')
+    path('shop', shop, name='shop'),
+    path('perfil/', perfil, name='perfil'),
+
 ]
 
 if settings.DEBUG:
