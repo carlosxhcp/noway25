@@ -47,3 +47,9 @@ def inscrever_newsletter(request):
 @login_required
 def perfil(request):
     return render(request, 'perfil.html')
+
+
+def manifest(request):
+    return render(request, 'manifest.html')
+
+def lookbook(request)

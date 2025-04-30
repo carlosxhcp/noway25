@@ -6,6 +6,7 @@ from main_app.views import shop
 from django.conf import settings
 from django.conf.urls.static import static
 from main_app.views import perfil
+from main_app.views import manifest
 
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     path('', index,name='index'),
     path('shop', shop, name='shop'),
     path('perfil/', perfil, name='perfil'),
+    path('manifest', manifest, name='manifest')
 
 ]
 

@@ -37,6 +37,10 @@ LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
+# MERCADO PAGO
+MERCHANT_ID = '741750996'
+ACCESS_TOKEN = 'TEST-1184340400142902-042921-912500585128a76007fa3dcbc6881b5e-741750996'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
