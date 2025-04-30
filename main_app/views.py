@@ -52,4 +52,5 @@ def perfil(request):
 def manifest(request):
     return render(request, 'manifest.html')
 
-def lookbook(request)
+def lookbook(request):
+    return render(request, 'lookbook.html')

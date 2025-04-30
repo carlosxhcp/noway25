@@ -1,18 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} Noway. Manifest  {% endblock %}
 
-
-
 {% block content  %}
-MANIFESTO
+<link rel="stylesheet" href="{% static 'main_app/css/manifest.css' %}" />
 
 
-
-
-
-
-
-
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <img src="{% static 'main_app/img/manifest/txt_manifest2.png' %}" width="700px"  class="img-fluid" alt="Texto Manifesto">
+  </div>
 
 {% endblock  %}
