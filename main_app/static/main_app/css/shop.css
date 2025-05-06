@@ -9,46 +9,36 @@ body {
   padding: 0;
 }
 
-.mockup {
-  margin-top: 100px ;
+
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  cursor: pointer; /* opcional para indicar interatividade */
 }
 
-.mock1 {
-    background-image: url("../img/shop/mock1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 500px;
-    height: 500px;
-  }
-  
-  .mock1:active {
-    background-image: url("../img/shop/mock1b.png"); /* Imagem do hover */
-  }
-  
-  .mock2 {
-    background-image: url("../img/shop/mock2.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 500px;
-    height: 500px;
-  }
-  
-  .mock2:hover {
-    background-image: url("../img/shop/mock2b.png"); /* Imagem do hover */
-  }
-  
-  .mock3 {
-    background-image: url("../img/shop/mock3.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 500px;
-    height: 500px;
-  }
-  
-  .mock3:hover {
-    background-image: url("../img/shop/mock3b.png"); /* Imagem do hover */
-  }
-  
+.img-base,
+.img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transition: opacity 1s ease;
+}
+
+.img-hover {
+  opacity: 0; /* inicia invisível */
+}
+
+.container.scroll-ativa .img-hover {
+  opacity: 1; /* aparece com fade */
+}
+
+.container.scroll-ativa .img-base {
+  opacity: 0; /* some com fade */
+}
