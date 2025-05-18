@@ -7,3 +7,18 @@ body {
     margin: 0;
     padding: 0;
   }
+
+/* Aplica o background SOMENTE em telas menores que 768px */
+@media (max-width: 768px) {
+  body {
+    background-image: url("../img/manifest/bg_manifest_mobile.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  main {
+    min-height: 1000px; /* Ajuste conforme necessário para mostrar bem a imagem */
+  }
+}
