@@ -8,27 +8,59 @@
     <title>{% block title %} Noway {% endblock %}</title>
     <meta name="csrf-token" content="{{ csrf_token }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link rel="stylesheet" href="{% static 'main_app/css/base.css' %}" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
       .navbar {
         background-color: transparent !important;
       }
+
       footer .footer-newsletter,
       footer .footer-logo,
       footer .footer-links {
         flex: 1 1 0;
         max-width: 300px;
+      }
+
+      /* Menu offcanvas personalizado */
+      .custom-offcanvas {
+        width: 50% !important;
+        background-color: #000 !important;
+        color: white;
+      }
+
+      .custom-offcanvas .offcanvas-body {
+        background-color: #000 !important;
+      }
+
+      .custom-offcanvas .nav-link {
+        color: white;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+      }
+
+      .custom-offcanvas .nav-link:hover {
+        color: #ccc;
+      }
+
+      .offcanvas-header .logo-img {
+        height: 40px;
+      }
+
+      @media (min-width: 992px) {
+        .mobile-menu-toggle {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 991.98px) {
+        .desktop-menu {
+          display: none !important;
+        }
       }
     </style>
   </head>
@@ -36,59 +68,67 @@
   <body class="d-flex flex-column min-vh-100">
     <!-- Menu do site -->
     <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        <!-- Botão do menu lateral para mobile -->
         <button
-          class="navbar-toggler"
+          class="btn text-white mobile-menu-toggle"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMenu"
+          aria-controls="offcanvasMenu"
         >
-          <span class="navbar-toggler-icon"></span>
+          <i class="bi bi-list" style="font-size: 2rem;"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Menu principal (visível apenas em telas maiores) -->
+        <div class="collapse navbar-collapse desktop-menu" id="navbarNav">
           <ul class="navbar-nav mx-auto menu-spacing">
-            <li class="nav-item">
-              <a class="nav-link menu-link" aria-current="page" href="{% url 'lookbook' %}">LOOKBOOK</a>
-            </li>
-            <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a>
-            </li>
+            <li class="nav-item"><a class="nav-link menu-link" href="{% url 'lookbook' %}">LOOKBOOK</a></li>
+            <li class="nav-item"><a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a></li>
             <li class="nav-item">
               <a class="nav-link logo-link" href="{% url 'index' %}">
-                <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="" />
+                <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="Logo" />
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a>
-            </li>
-            <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a>
-            </li>
+            <li class="nav-item"><a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a></li>
+            <li class="nav-item"><a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
+    <!-- Offcanvas menu lateral (mobile) -->
+    <div class="offcanvas offcanvas-start custom-offcanvas" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+      <div class="offcanvas-header justify-content-between align-items-center">
+        <img src="{% static 'main_app/img/logo_branco.png' %}" alt="Logo" class="logo-img" />
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'lookbook' %}">LOOKBOOK</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">SHOP</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'manifest' %}">MANIFEST</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">ACCOUNT</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Conteúdo principal -->
     <main class="flex-fill">
       {% block content %}
       {% endblock %}
     </main>
 
+    <!-- Rodapé -->
     <footer class="bg-black text-white py-3 mt-auto">
       <div class="container d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
-
-        <!-- Coluna: Newsletter -->
+        <!-- Newsletter -->
         <div class="footer-newsletter">
           <p class="text-uppercase small mb-1">Newsletter – Grupo Privado</p>
           <form class="d-flex mb-2">
-            <input
-              type="email"
-              class="form-control form-control-sm bg-dark border-0 text-white me-2"
-              placeholder="Seu e-mail"
-            />
+            <input type="email" class="form-control form-control-sm bg-dark border-0 text-white me-2" placeholder="Seu e-mail" />
             <button type="submit" class="btn btn-outline-light btn-sm">→</button>
           </form>
           <p class="mb-1 small">
@@ -100,7 +140,7 @@
           </p>
         </div>
 
-        <!-- Coluna: Logo -->
+        <!-- Logo -->
         <div class="footer-logo text-center mx-auto">
           <img src="{% static 'main_app/img/logo_branco.png' %}" alt="NOWAY Logo" style="height: 80px;" />
           <p class="mb-0 mt-2 small">
@@ -109,7 +149,7 @@
           </p>
         </div>
 
-        <!-- Coluna: Navegação -->
+        <!-- Navegação -->
         <div class="footer-links text-end">
           <ul class="list-unstyled mb-0 small">
             <li><a href="{% url 'index' %}" class="text-white text-decoration-none">HOME</a></li>
@@ -119,7 +159,6 @@
             <li><a href="{% url 'perfil' %}" class="text-white text-decoration-none">ACCOUNT</a></li>
           </ul>
         </div>
-
       </div>
     </footer>
   </body>
