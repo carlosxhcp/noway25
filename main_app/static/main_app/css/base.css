@@ -93,3 +93,11 @@
 .footer input::placeholder {
   color: #aaa;
 }
+
+
+@media (min-width: 992px) { /* desktop a partir do breakpoint lg do Bootstrap */
+  .navbar-nav .nav-item {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}

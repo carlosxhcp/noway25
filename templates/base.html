@@ -39,44 +39,50 @@
   <body class="d-flex flex-column min-vh-100">
 
 
-    <!-- MENU -->
-    <nav class="justify-center navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto menu-spacing">
-            <li class="nav-item">
-              <a class="nav-link menu-link" aria-current="page" href="{% url 'lookbook' %}">LOOKBOOK</a>
-            </li>
-            <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link logo-link" href="{% url 'index' %}">
-                <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="" />
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a>
-            </li>
-            <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- FIM MENU-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-center">
+  <div class="container-fluid">
+    <a class="navbar-brand d-lg-none" href="{% url 'index' %}">
+      <img src="{% static 'main_app/img/logo.png' %}" alt="Logo" width="80" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center mx-auto menu-spacing flex-column flex-lg-row">
+        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
+          <a class="nav-link menu-link" aria-current="page" href="{% url 'lookbook' %}">LOOKBOOK</a>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
+          <a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a>
+        </li>
+
+        <!-- Logo centralizado no desktop -->
+        <li class="nav-item mx-lg-5 d-none d-lg-block">
+          <a class="nav-link logo-link p-0" href="{% url 'index' %}">
+            <img src="{% static 'main_app/img/logo.png' %}" width="100" alt="Logo" />
+          </a>
+        </li>
+
+        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
+          <a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a>
+        </li>
+        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
+          <a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 
     <!-- CONTEUDO -->
     <main class="flex-fill">
