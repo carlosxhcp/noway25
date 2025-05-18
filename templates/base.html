@@ -1,34 +1,45 @@
-{% load static %} {% load account %}
+{% load static %}
+{% load account %}
 
 <!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
-    <title> {% block title %} Noway {% endblock %}</title>
+    <title>{% block title %} Noway {% endblock %}</title>
     <meta name="csrf-token" content="{{ csrf_token }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'main_app/css/index.css' %}" />
-    <link rel="stylesheet" href="{% static 'main_app/css/shop.css' %}" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-
+    <!-- CSS-->
+    <link rel="stylesheet" href="{% static 'main_app/css/base.css' %}" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <!-- FIM CSS -->
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
           $("#myModal").modal("show");
-        }, 1000); // 1000 milissegundos = 1 segundo
+        }, 1000);
       });
     </script>
+    <!-- FIM JS -->
+
   </head>
 
+
   <body class="d-flex flex-column min-vh-100">
-    <!-- Menu do site -->
+
+
+    <!-- MENU -->
     <nav class="justify-center navbar navbar-expand-lg">
       <div class="container-fluid">
         <button
@@ -45,90 +56,87 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto menu-spacing">
             <li class="nav-item">
-              <a class="nav-link menu-link" aria-current="page" href="{% url "lookbook" %}">LOOKBOOK</a>
+              <a class="nav-link menu-link" aria-current="page" href="{% url 'lookbook' %}">LOOKBOOK</a>
             </li>
             <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url "shop" %}">SHOP</a>
-              
+              <a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a>
             </li>
-            <li class="nav-item ">
-
-
-              <a class="nav-link logo-link" href="{% url "index" %}">
-                <img
-                  src="{% static 'main_app/img/logo.png' %}"
-                  width="100px"
-                  alt=""
-                />
+            <li class="nav-item">
+              <a class="nav-link logo-link" href="{% url 'index' %}">
+                <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="" />
               </a>
             </li>
-
-
             <li class="nav-item">
-              <a class="nav-link menu-link" aria-current="page" href="{% url "manifest" %}">MANIFEST</a>
+              <a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a>
             </li>
             <li class="nav-item menu-link">
-              <a class="nav-link menu-link" href="{% url "perfil" %}">ACCOUNT</a>
+              <a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a>
             </li>
-
-
           </ul>
         </div>
       </div>
     </nav>
-    
-    
+    <!-- FIM MENU-->
+
+    <!-- CONTEUDO -->
     <main class="flex-fill">
       {% block content %}
       {% endblock %}
     </main>
+    <!-- FIM CONTEUDO-->
 
 
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-4 mt-auto">
+      <div class="container d-flex flex-wrap justify-content-between align-items-start gap-4">
 
-    <footer class="footer bg-black text-white py-4">
-  <div class="container-fluid d-flex flex-row justify-content-between align-items-center flex-wrap text-center text-md-start">
-    
-    <!-- Coluna Esquerda -->
-    <div class="footer-left mb-3 mb-md-0" style="min-width: 200px;">
-      <p class="small text-uppercase mb-1">Newsletter – Grupo Privado</p>
-      <form class="d-flex mb-2">
-        <input type="email" class="form-control form-control-sm bg-dark border-0 text-white me-2" placeholder="E-mail">
-        <button type="submit" class="btn btn-outline-light btn-sm">→</button>
-      </form>
-      <p class="mb-1">Entre em contato<br><a href="mailto:sac@nowaysp.com" class="text-white">sac@nowaysp.com</a></p>
-      <p class="mb-0"><i class="bi bi-instagram me-1"></i> NOWAYSP © 2021</p>
-    </div>
+        <!-- Coluna: Newsletter -->
+        <div class="footer-newsletter" style="min-width: 220px;">
+          <p class="text-uppercase small mb-1">Newsletter – Grupo Privado</p>
+          <form class="d-flex mb-2">
+            <input
+              type="email"
+              class="form-control form-control-sm bg-dark border-0 text-white me-2"
+              placeholder="Seu e-mail"
+            />
+            <button type="submit" class="btn btn-outline-light btn-sm">→</button>
+          </form>
+          <p class="mb-1 small">
+            Entre em contato:<br />
+            <a href="mailto:sac@nowaysp.com" class="text-white">sac@nowaysp.com</a>
+          </p>
+          <p class="mb-0 small">
+            <i class="bi bi-instagram me-1"></i> @nowaysp
+          </p>
+        </div>
 
-    <!-- Coluna Central -->
-    <div class="footer-center text-center mx-auto" style="min-width: 200px;">
-      <img src="{% static 'main_app/img/logo.png' %}" alt="Logo NOWAY" style="height: 60px;">
-      <p class="mb-0 mt-2 small">Copyright NOWAY™ – 42640754000156 – 2025. Todos os direitos</p>
-    </div>
+        <!-- Coluna: Logo -->
+        <div class="footer-logo text-center mx-auto" style="min-width: 200px;">
+          <img src="{% static 'main_app/img/logo_branco.png' %}" alt="NOWAY Logo" style="height: 80px;" />
+          <p class="mb-0 mt-2 small">
+            © NOWAY™ 2025 – CNPJ 42.640.754/0001-56<br />
+            Todos os direitos reservados.
+          </p>
+        </div>
 
-    <!-- Coluna Direita -->
-    <div class="footer-right text-end" style="min-width: 120px;">
-      <ul class="list-unstyled mb-0">
-        <li><a href="{% url 'index' %}" class="text-white text-decoration-none">HOME</a></li>
-        <li><a href="{% url 'lookbook' %}" class="text-white text-decoration-none">LOOKBOOK</a></li>
-        <li><a href="{% url 'shop' %}" class="text-white text-decoration-none">SHOP</a></li>
-        <li><a href="{% url 'manifest' %}" class="text-white text-decoration-none">MANIFEST</a></li>
-        <li><a href="{% url 'perfil' %}" class="text-white text-decoration-none">ACCOUNT</a></li>
-      </ul>
-    </div>
+        <!-- Coluna: Navegação -->
+        <div class="footer-links text-end" style="min-width: 150px;">
+          <ul class="list-unstyled mb-0 small">
+            <li><a href="{% url 'index' %}" class="text-white text-decoration-none">HOME</a></li>
+            <li><a href="{% url 'lookbook' %}" class="text-white text-decoration-none">LOOKBOOK</a></li>
+            <li><a href="{% url 'shop' %}" class="text-white text-decoration-none">SHOP</a></li>
+            <li><a href="{% url 'manifest' %}" class="text-white text-decoration-none">MANIFEST</a></li>
+            <li><a href="{% url 'perfil' %}" class="text-white text-decoration-none">ACCOUNT</a></li>
+          </ul>
+        </div>
 
-  </div>
-</footer>
-
-
-
-
-
-
+      </div>
+    </footer>
+    <!-- FIM FOOTER-->
 
 
-
-
-   <!--antigo rodape
+    <!-- Antigo rodapé (comentado) -->
+    <!--
     <footer class="rodape text-light py-3" style="margin-top: 200px;">
       <div class="container-fluid">
         <div class="row">
@@ -146,6 +154,8 @@
         &copy; 2025 Noway
       </div>
     </footer>
-    <!-- Fim do rodapé -->
+    -->
+
+    
   </body>
 </html>

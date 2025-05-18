@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&display=swap');
+
+/* Menu e espaçamento dos itens do menu */
+.menu-spacing .nav-item {
+  margin: 0 130px;
+  margin-top: 10px;
+}
+
+.menu-spacing img {
+  margin: 0 0px;
+  margin-top: -20px;
+}
+
+/* Estilo dos links do menu */
+.navbar-nav .nav-item .nav-link {
+  font-size: 20px;
+  font-family: "Courier Prime", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.menu-link {
+  color: rgb(0, 0, 0) !important; 
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+  color: rgb(114, 114, 114) !important;
+}
+
+/* Navbar transparente */
+.navbar {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+/* Botão de login */
+.login_btn a {
+  margin-top: 200px;
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+.login_btn {
+  margin-top: 20px;
+  font-family: 'Courier Prime';
+  transition: color 0.3s ease;
+}
+
+.login_btn:hover {
+  color: #636363 !important;
+}
+
+/* Ícone carrinho */
+.bi-cart {
+  font-size: 30px;
+  margin-top: 100px;
+  margin-right: 400px;
+  position: relative;
+}
+
+/* Rodapé base */
+.rodape {
+  font-family: "Courier Prime";
+  background-color: #000;
+  color: #636363;
+}
+
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.footer-link {
+  color: #636363 !important;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: white !important;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer input::placeholder {
+  color: #aaa;
+}
