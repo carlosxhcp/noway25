@@ -83,3 +83,18 @@
   margin-right: 400px;
   position:relative;
 }
+
+
+main {
+    min-height: 900px; 
+  }
+
+  body {
+    background-image: url("../img/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
