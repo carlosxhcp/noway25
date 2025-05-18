@@ -95,9 +95,49 @@
 }
 
 
-@media (min-width: 992px) { /* desktop a partir do breakpoint lg do Bootstrap */
-  .navbar-nav .nav-item {
-    margin-left: 30px;
-    margin-right: 30px;
+/* Estilo para o menu fullscreen no mobile */
+@media (max-width: 991.98px) {
+  .fullscreen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .fullscreen-menu .nav-item {
+    margin: 1.5rem 0;
+  }
+
+  .navbar-collapse.collapse:not(.show) {
+    display: none !important;
+  }
+
+  .navbar-toggler.custom-toggler {
+    z-index: 10000;
+    border: none;
+    background: none;
+    font-size: 2rem;
+    color: black;
+  }
+
+  body.offcanvas-open {
+    overflow: hidden;
   }
 }
+
+.navbar {
+  z-index: 1050; /* Para garantir que fique acima de tudo */
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+

@@ -31,6 +31,32 @@
         }, 1000);
       });
     </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.getElementById('navbarNav');
+    const toggler = document.querySelector('.navbar-toggler');
+
+    toggler.addEventListener('click', function () {
+      setTimeout(() => {
+        if (nav.classList.contains('show')) {
+          document.body.classList.add('no-scroll');
+        } else {
+          document.body.classList.remove('no-scroll');
+        }
+      }, 300); // Espera a animação do Bootstrap
+    });
+
+    // Fecha o menu ao clicar em link
+    document.querySelectorAll('#navbarNav .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const bsCollapse = bootstrap.Collapse.getInstance(nav);
+        if (bsCollapse) bsCollapse.hide();
+        document.body.classList.remove('no-scroll');
+      });
+    });
+  });
+</script>
+
     <!-- FIM JS -->
 
   </head>
@@ -39,11 +65,15 @@
   <body class="d-flex flex-column min-vh-100">
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-center">
+    <!-- MENU -->
+<nav class="navbar navbar-expand-lg fixed-top bg-white">
   <div class="container-fluid">
-    <a class="navbar-brand d-lg-none" href="{% url 'index' %}">
-      <img src="{% static 'main_app/img/logo.png' %}" alt="Logo" width="80" />
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static 'main_app/img/logo.png' %}" width="100px" alt="Logo" />
     </a>
+
+    <!-- Toggler -->
     <button
       class="navbar-toggler"
       type="button"
@@ -56,32 +86,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav text-center mx-auto menu-spacing flex-column flex-lg-row">
-        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
-          <a class="nav-link menu-link" aria-current="page" href="{% url 'lookbook' %}">LOOKBOOK</a>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
-          <a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a>
-        </li>
-
-        <!-- Logo centralizado no desktop -->
-        <li class="nav-item mx-lg-5 d-none d-lg-block">
-          <a class="nav-link logo-link p-0" href="{% url 'index' %}">
-            <img src="{% static 'main_app/img/logo.png' %}" width="100" alt="Logo" />
-          </a>
-        </li>
-
-        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
-          <a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a>
-        </li>
-        <li class="nav-item mb-2 mb-lg-0 mx-lg-5">
-          <a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a>
-        </li>
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto menu-spacing text-center">
+        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'lookbook' %}">LOOKBOOK</a></li>
+        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'shop' %}">SHOP</a></li>
+        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'manifest' %}">MANIFEST</a></li>
+        <li class="nav-item"><a class="nav-link menu-link" href="{% url 'perfil' %}">ACCOUNT</a></li>
       </ul>
     </div>
   </div>
 </nav>
+<!-- FIM MENU -->
+
+
 
 
     <!-- CONTEUDO -->
