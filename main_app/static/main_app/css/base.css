@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&display=swap');
 
+@font-face {
+  font-family: 'typo';
+  src: url('../fonts/typo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Menu e espaçamento dos itens do menu */
 .menu-spacing .nav-item {
   margin: 0 130px;
@@ -15,13 +22,13 @@
 /* Estilo dos links do menu */
 .navbar-nav .nav-item .nav-link {
   font-size: 20px;
-  font-family: "Courier Prime", system-ui;
+  font-family: "typo", system-ui;
   font-weight: 400;
   font-style: normal;
 }
 
 .menu-link {
-  color: rgb(0, 0, 0) !important; 
+  color: rgb(255, 255, 255) !important; 
   transition: color 0.3s ease;
 }
 
@@ -31,7 +38,7 @@
 
 /* Navbar transparente */
 .navbar {
-  background-color: rgba(255, 255, 255, 0) !important;
+  background-color: transparent !important;
 }
 
 /* Botão de login */
@@ -94,4 +101,49 @@
   color: #aaa;
 }
 
+/* Rodapé flex */
+footer .footer-newsletter,
+footer .footer-logo,
+footer .footer-links {
+  flex: 1 1 0;
+  max-width: 300px;
+}
 
+/* Menu offcanvas personalizado */
+.custom-offcanvas {
+  width: 50% !important;
+  background-color: #000 !important;
+  color: white;
+}
+
+.custom-offcanvas .offcanvas-body {
+  background-color: #000 !important;
+}
+
+.custom-offcanvas .nav-link {
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  font-family: 'typo', sans-serif !important;
+}
+
+.custom-offcanvas .nav-link:hover {
+  color: #ccc;
+}
+
+.offcanvas-header .logo-img {
+  height: 40px;
+}
+
+/* Responsividade menu */
+@media (min-width: 992px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .desktop-menu {
+    display: none !important;
+  }
+}

@@ -1,137 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load account %}
 
-    {% extends "base.html" %}
 
-    {% load static %}
 
-    {% block title %}Noway. Home{% endblock %}
+{% block title %}Noway - Home{% endblock title %}
 
-  
-    {% block content %}
-    <link rel="stylesheet" href="{% static 'main_app/css/index.css' %}" />
+{% block menu_styles %}
+<style>
+  .navbar .nav-link {
+    color: white !important;
+  }
 
-    <!--<div class="wallpaper-container"></div>-->
+  .navbar .nav-link:hover {
+    color: #b0b0b0 !important;
+  }
+</style>
+{% endblock %}
 
-    
-    <!-- Modal 1: Inscrição -->
-    <div
-      class="modal fade"
-      id="newsletterModal"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-          <form id="newsletterForm">
-            <div class="modal-header">
-              <h5 class="modal-title">Inscreva-se</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="nomeInput" class="form-label">Nome</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="nomeInput"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="emailInput" class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="emailInput"
-                  required
-                />
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <!-- Modal 2: Agradecimento -->
-    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-          <div class="modal-body text-center p-4">
-            <h5 class="mb-3">🎉 Obrigado!</h5>
-            <p>Você foi inscrito com sucesso na nossa newsletter.</p>
-            <button
-              type="button"
-              class="btn btn-success mt-3"
-              data-bs-dismiss="modal"
-            >
-              Fechar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("newsletterForm");
-        const newsletterModal = new bootstrap.Modal(
-          document.getElementById("newsletterModal")
-        );
-        const thankYouModal = new bootstrap.Modal(
-          document.getElementById("thankYouModal")
-        );
-      
-        // Abre o modal uma vez por sessão
-        if (!sessionStorage.getItem("newsletterShown")) {
-          setTimeout(() => {
-            newsletterModal.show();
-            sessionStorage.setItem("newsletterShown", "true");
-          }, 1000);
-        }
-      
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-      
-          const nome = document.getElementById("nomeInput").value;
-          const email = document.getElementById("emailInput").value;
-      
-          fetch(
-            "https://kxtlacebeybfggufdsjq.supabase.co/rest/v1/newsletter",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dGxhY2ViZXliZmdndWZkc2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzMDI3NzAsImV4cCI6MjA1OTg3ODc3MH0.UhAKHrZ7y_QZAgSXVWp2BcAVquuiGX4sMXetYRmm5IQ",  // Substitua pela chave pública da sua API
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dGxhY2ViZXliZmdndWZkc2pxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQzMDI3NzAsImV4cCI6MjA1OTg3ODc3MH0.UhAKHrZ7y_QZAgSXVWp2BcAVquuiGX4sMXetYRmm5IQ",  // Substitua pela chave pública da sua API
-                Prefer: "return=minimal",
-              },
-              body: JSON.stringify({
-                nome: nome,
-                email: email,
-                created_at: new Date().toISOString(),
-              }),
-            }
-          )
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Erro ao salvar no Supabase.");
-              }
-              newsletterModal.hide();
-              setTimeout(() => thankYouModal.show(), 500);
-            })
-            .catch((error) => {
-              alert("Ocorreu um erro: " + error.message);
-              console.error(error);
-            });
-        });
-      });
-      
-    </script>
-    {% endblock %}
+{% block content %}
+
+  <style>
+  .logo-link {
+    display: none !important;
+  }
+</style>
+    <style>
+      body {
+        background-image: url("{% static 'main_app/img/wallpaper.png' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (max-width: 991.98px) {
+    body {
+     background-image: url("{% static 'main_app/img/wallpaper_mobile.png' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    }
+  }
+
+      .navbar {
+        background-color: transparent !important;
+      }
+
+      .offcanvas-custom {
+        width: 50vw;
+        background-color: rgba(0, 0, 0, 0.95);
+        color: white;
+      }
+
+      .offcanvas-custom .offcanvas-body a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 8px 0;
+      }
+
+      .offcanvas-custom .offcanvas-body a:hover {
+        text-decoration: underline;
+      }
+
+      .offcanvas-header .btn-close {
+        filter: invert(1);
+      }
+
+      footer .footer-newsletter,
+      footer .footer-logo,
+      footer .footer-links {
+        flex: 1 1 0;
+        max-width: 300px;
+      }
+
+      main {
+    min-height: 900px; 
+  }
+    </style>
+
+</html>
+
+
+{% endblock content %}
