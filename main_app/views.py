@@ -63,3 +63,6 @@ def deform(request):
 
 def dadhat(request):
     return render(request, 'lookbook/dadhat.html')
+
+def deform_shop(request):
+    return render(request, 'shop/deform.html')

@@ -11,18 +11,23 @@ from main_app.views import lookbook
 from main_app.views import deform
 from main_app.views import fbd
 from main_app.views import dadhat
+from main_app.views import deform_shop
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', index,name='index'),
     path('shop', shop, name='shop'),
+    path('shop/deform/', deform_shop, name='deform_shop'),
+
     path('perfil/', perfil, name='perfil'),
     path('manifest', manifest, name='manifest'),
+
     path('lookbook', lookbook, name='lookbook'),
     path('lookbook/deform/', deform, name='lookbook_deform'),
     path('lookbook/fuckbaddays/', fbd, name='lookbook_fbd'),
     path('lookbook/dadhat/', dadhat, name='lookbook_dadhat'),
+
     path('perfil/', include('main_app.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
