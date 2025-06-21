@@ -3,6 +3,5 @@ from main_app.views import inscrever_newsletter
 from main_app.views import shop
 
 urlpatterns = [
-    # outras rotas...
     path('inscrever/', inscrever_newsletter, name='inscrever_newsletter'),
 ]

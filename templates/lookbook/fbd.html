@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Noway - Lookbook{% endblock title %}
+
+
+
+{% block content %}
+<style>
+  .image-overlay-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .image-overlay-text {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .image-overlay-text:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<style>
+  .image-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .overlay-button {
+    position: absolute;
+    top: 40%; /* Ajuste esse valor para subir ou descer o botão */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .overlay-button:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="image-wrapper">
+        <a href="{% url 'lookbook_deform' %}" class="overlay-button">Ver Álbum</a>
+        <a href="{% url 'lookbook_deform' %}">
+          <img src="{% static 'main_app/img/lookbook/album1.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 1">
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="image-wrapper">
+        <a href="{% url 'lookbook_deform' %}" class="overlay-button">Ver Álbum</a>
+        <a href="{% url 'lookbook_deform' %}">
+          <img src="{% static 'main_app/img/lookbook/album1.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 1">
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="image-wrapper">
+        <a href="{% url 'lookbook_deform' %}" class="overlay-button">Ver Álbum</a>
+        <a href="{% url 'lookbook_deform' %}">
+          <img src="{% static 'main_app/img/lookbook/album1.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 1">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br><br><br><br><br>
+{% endblock content %}

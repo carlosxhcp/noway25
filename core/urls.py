@@ -8,6 +8,9 @@ from django.conf.urls.static import static
 from main_app.views import perfil
 from main_app.views import manifest
 from main_app.views import lookbook
+from main_app.views import deform
+from main_app.views import fbd
+from main_app.views import dadhat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,9 +19,14 @@ urlpatterns = [
     path('shop', shop, name='shop'),
     path('perfil/', perfil, name='perfil'),
     path('manifest', manifest, name='manifest'),
-    path('lookbook', lookbook, name='lookbook')
+    path('lookbook', lookbook, name='lookbook'),
+    path('lookbook/deform/', deform, name='lookbook_deform'),
+    path('lookbook/fuckbaddays/', fbd, name='lookbook_fbd'),
+    path('lookbook/dadhat/', dadhat, name='lookbook_dadhat'),
+    path('perfil/', include('main_app.urls')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

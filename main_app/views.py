@@ -46,7 +46,7 @@ def inscrever_newsletter(request):
 
 @login_required
 def perfil(request):
-    return render(request, 'perfil.html')
+    return render(request, 'perfil.html', {'user': request.user})
 
 
 def manifest(request):
@@ -54,3 +54,12 @@ def manifest(request):
 
 def lookbook(request):
     return render(request, 'lookbook.html')
+
+def fbd(request):
+    return render(request, 'lookbook/fbd.html')
+
+def deform(request):
+    return render(request, 'lookbook/deform.html')
+
+def dadhat(request):
+    return render(request, 'lookbook/dadhat.html')

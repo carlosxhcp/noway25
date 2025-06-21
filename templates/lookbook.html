@@ -6,20 +6,34 @@
 
 
 {% block content %}
+<style>
+  a {
+    text-decoration: none;  /* remove sublinhado */
+    color: inherit;         /* herda a cor do texto do elemento pai */
+  }
+</style>
 <div class="container mt-5">
   <div class="row text-center">
     <div class="col-md-4">
-      <img src="{% static 'main_app/img/lookbook/album1.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 1">
-      <h5>DEFORM</h5>
+      <a href="{% url 'lookbook_deform' %}">
+        <img src="{% static 'main_app/img/lookbook/album1.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 1">
+        <h5>DEFORM</h5>
+      </a>
     </div>
     <div class="col-md-4">
-      <img src="{% static 'main_app/img/lookbook/album2.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 2">
-      <h5>FUCK BAD DAYS</h5>
+      <a href="{% url 'lookbook_fbd' %}">
+        <img src="{% static 'main_app/img/lookbook/album2.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 2">
+        <h5>FUCK BAD DAYS</h5>
+      </a>
     </div>
     <div class="col-md-4">
-      <img src="{% static 'main_app/img/lookbook/album3.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 3">
-      <h5>DADHAT</h5>
+      <a href="{% url 'lookbook_dadhat' %}">
+        <img src="{% static 'main_app/img/lookbook/album3.jpg' %}" class="img-fluid rounded mb-2" alt="Imagem 3">
+        <h5>DADHAT</h5>
+      </a>
     </div>
   </div>
 </div>
+
+<br><br><br><br><br>
 {% endblock content %}

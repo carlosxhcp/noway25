@@ -89,16 +89,6 @@
     .signup-wrapper button:hover {
       background-color: #333;
     }
-
-    #download-btn {
-      margin: 1rem auto 0;
-      display: block;
-      background-color: #0066cc;
-    }
-
-    #download-btn:hover {
-      background-color: #004b99;
-    }
   </style>
 
   <div class="signup-wrapper">
@@ -141,8 +131,6 @@
       <img src="{% static 'main_app/img/avatars/shirts/shirt3.png' %}" onclick="selectAvatar('shirt', this)">
     </div>
 
-    <button id="download-btn" onclick="downloadAvatar()">Baixar Avatar</button>
-
     {% setvar link %}<a href="{{ login_url }}">{% endsetvar %}
     {% setvar end_link %}</a>{% endsetvar %}
 
@@ -159,6 +147,10 @@
           <input type="hidden" name="skin" id="skinInput" value="{% static 'main_app/img/avatars/skins/skin1.png' %}">
           <input type="hidden" name="eyes" id="eyesInput" value="{% static 'main_app/img/avatars/eyes/eyes1.png' %}">
           <input type="hidden" name="shirt" id="shirtInput" value="{% static 'main_app/img/avatars/shirts/shirt1.png' %}">
+          
+          <!-- ✅ Campo oculto que receberá a imagem do avatar em base64 -->
+          <input type="hidden" name="avatar_data" id="avatarData">
+
           {% element fields form=form unlabeled=True %}
           {% endelement %}
           {{ redirect_field }}
@@ -183,8 +175,6 @@
     {% endif %}
   </div>
 
-  <canvas id="avatarCanvas" width="300" height="300" style="display: none;"></canvas>
-
   <script>
     function selectAvatar(type, imgElement) {
       const src = imgElement.src;
@@ -201,37 +191,36 @@
       imgElement.classList.add('selected');
     }
 
-    function downloadAvatar() {
-      const canvas = document.getElementById('avatarCanvas');
+    // ✅ Gera imagem do avatar no canvas
+    function generateAvatarImage() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 300;
       const ctx = canvas.getContext('2d');
 
       const layers = [
-        document.getElementById('shirtPreview').src,
-        document.getElementById('skinPreview').src,
-        document.getElementById('eyesPreview').src,
-        document.getElementById('hairPreview').src
+        document.getElementById('shirtPreview'),
+        document.getElementById('skinPreview'),
+        document.getElementById('eyesPreview'),
+        document.getElementById('hairPreview')
       ];
 
-      const images = [];
-      let loaded = 0;
-
-      layers.forEach((src, index) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous'; // permite uso externo/local
-        img.onload = function () {
-          images[index] = img;
-          loaded++;
-          if (loaded === layers.length) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            images.forEach(img => ctx.drawImage(img, 0, 0, canvas.width, canvas.height));
-            const link = document.createElement('a');
-            link.download = 'meu_avatar.png';
-            link.href = canvas.toDataURL();
-            link.click();
-          }
-        };
-        img.src = src;
+      layers.forEach(layer => {
+        ctx.drawImage(layer, 0, 0, 300, 300);
       });
+
+      return canvas.toDataURL('image/png');
     }
+
+    // ✅ Injeta imagem base64 no campo oculto antes de enviar o form
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function () {
+          const avatarData = generateAvatarImage();
+          document.getElementById('avatarData').value = avatarData;
+        });
+      }
+    });
   </script>
 {% endblock content %}

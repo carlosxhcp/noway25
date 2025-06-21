@@ -28,6 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key')
 
 
+ACCOUNT_FORMS = {
+    'signup': 'main_app.forms.CustomSignupForm',  # ajuste para o seu app
+}
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -144,7 +149,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main_app/static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
