@@ -1,69 +1,100 @@
 {% extends "base.html" %}
-
 {% load static %}
-
-
 
 {% block title %}Noway. Shop{% endblock %}
 
 {% block content %}
 <style>
-  
+  .mockup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem; /* espaçamento maior entre os modelos */
+  }
+
+  .troca-imagem {
+    position: relative;
+    width: 360px; /* tamanho grande para cada modelo */
+    cursor: pointer;
+  }
+
+  .troca-imagem img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+  }
+
+  .troca-imagem .img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .troca-imagem:hover .img-base {
+    opacity: 0;
+  }
+
+  .troca-imagem:hover .img-hover {
+    opacity: 1;
+  }
+
+  .troca-imagem.scroll-ativa .img-base {
+    opacity: 0;
+  }
+
+  .troca-imagem.scroll-ativa .img-hover {
+    opacity: 1;
+  }
 </style>
 
-    <div class="mockup d-flex justify-content-center justify-content-md-around flex-wrap">
+<div class="mockup">
 
-      {% load static %}
+  <div class="troca-imagem">
+    <img src="{% static 'main_app/img/shop/mock1.png' %}" class="img-base" alt="Mockup 1">
+    <img src="{% static 'main_app/img/shop/mock1b.png' %}" class="img-hover" alt="Mockup 1 Hover">
+  </div>
 
-            <!-- Exemplo para a Imagem 1 -->
-        <div class="container troca-imagem">
-          <img src="{% static 'main_app/img/shop/mock1.png' %}" class="img-base" alt="Mockup 1">
-          <img src="{% static 'main_app/img/shop/mock1b.png' %}" class="img-hover" alt="Mockup 1 Hover">
-        </div>
+  <div class="troca-imagem">
+    <img src="{% static 'main_app/img/shop/mock2.png' %}" class="img-base" alt="Mockup 2">
+    <img src="{% static 'main_app/img/shop/mock2b.png' %}" class="img-hover" alt="Mockup 2 Hover">
+  </div>
 
-        <!-- Exemplo para a Imagem 2 -->
-        <div class="container troca-imagem">
-          <img src="{% static 'main_app/img/shop/mock2.png' %}" class="img-base" alt="Mockup 2">
-          <img src="{% static 'main_app/img/shop/mock2b.png' %}" class="img-hover" alt="Mockup 2 Hover">
-        </div>
+  <div class="troca-imagem">
+    <img src="{% static 'main_app/img/shop/mock3.png' %}" class="img-base" alt="Mockup 3">
+    <img src="{% static 'main_app/img/shop/mock3b.png' %}" class="img-hover" alt="Mockup 3 Hover">
+  </div>
 
+</div>
 
-    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    
-    
+<script>
+  document.querySelectorAll('.troca-imagem').forEach(container => {
+    let touchStartX = null;
+    let touchStartY = null;
 
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-    <script>
-      document.querySelectorAll('.troca-imagem').forEach(container => {
-        let touchStartX = null;
-        let touchStartY = null;
-    
-        container.addEventListener('touchstart', e => {
-          touchStartX = e.touches[0].clientX;
-          touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-    
-        container.addEventListener('touchend', e => {
-          const touchEndX = e.changedTouches[0].clientX;
-          const touchEndY = e.changedTouches[0].clientY;
-    
-          const diffX = Math.abs(touchEndX - touchStartX);
-          const diffY = Math.abs(touchEndY - touchStartY);
-    
-          if (diffX > 50 || diffY > 50) {
-            // Adiciona a classe para mostrar imagem hover
-            container.classList.add('scroll-ativa');
-    
-            // Espera 3 segundos e volta para a imagem original
-            setTimeout(() => {
-              container.classList.remove('scroll-ativa');
-            }, 3000); // 3000ms = 3 segundos
-          }
-        });
-      });
-    </script>
-    
-    {% endblock %}
+    container.addEventListener('touchend', e => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+
+      const diffX = Math.abs(touchEndX - touchStartX);
+      const diffY = Math.abs(touchEndY - touchStartY);
+
+      if (diffX > 50 || diffY > 50) {
+        container.classList.add('scroll-ativa');
+        setTimeout(() => {
+          container.classList.remove('scroll-ativa');
+        }, 3000);
+      }
+    });
+  });
+</script>
+
+{% endblock %}

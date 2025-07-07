@@ -2,225 +2,92 @@
 {% load allauth i18n static %}
 
 {% block head_title %}
-    {% trans "Signup" %}
+  {% trans "Signup" %}
 {% endblock head_title %}
 
 {% block content %}
-  <style>
-    .signup-wrapper {
-      max-width: 600px;
-      margin: auto;
-      padding: 2rem;
-      background-color: #f9f9f9;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .signup-wrapper h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .signup-wrapper p {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .avatar-preview {
-      width: 300px;
-      height: 300px;
-      margin: 0 auto 2rem;
-      position: relative;
-    }
-
-    .avatar-preview img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    #shirtPreview { z-index: 0; }
-    #skinPreview  { z-index: 1; }
-    #eyesPreview  { z-index: 2; }
-    #hairPreview  { z-index: 3; }
-
-    .avatar-options {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-
-    .avatar-options img {
-      width: 50px;
-      height: 50px;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .avatar-options img.selected {
-      border-color: #000;
-    }
-
-    .signup-wrapper form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .signup-wrapper button {
-      padding: 0.75rem;
-      background-color: black;
-      color: white;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .signup-wrapper button:hover {
-      background-color: #333;
-    }
-  </style>
-
-  <div class="signup-wrapper">
-    {% element h1 %}
-      {% trans "Sign Up" %}
-    {% endelement %}
-
-    <div class="avatar-preview">
-      <img id="shirtPreview" src="{% static 'main_app/img/avatars/shirts/shirt1.png' %}">
-      <img id="skinPreview"  src="{% static 'main_app/img/avatars/skins/skin1.png' %}">
-      <img id="eyesPreview"  src="{% static 'main_app/img/avatars/eyes/eyes1.png' %}">
-      <img id="hairPreview"  src="{% static 'main_app/img/avatars/hairs/hair1.png' %}">
-    </div>
-
-    <strong>Escolha o cabelo:</strong>
-    <div class="avatar-options" data-type="hair">
-      <img src="{% static 'main_app/img/avatars/hairs/hair1.png' %}" onclick="selectAvatar('hair', this)" class="selected">
-      <img src="{% static 'main_app/img/avatars/hairs/hair2.png' %}" onclick="selectAvatar('hair', this)">
-      <img src="{% static 'main_app/img/avatars/hairs/hair3.png' %}" onclick="selectAvatar('hair', this)">
-    </div>
-
-    <strong>Escolha o tom de pele:</strong>
-    <div class="avatar-options" data-type="skin">
-      <img src="{% static 'main_app/img/avatars/skins/skin1.png' %}" onclick="selectAvatar('skin', this)" class="selected">
-      <img src="{% static 'main_app/img/avatars/skins/skin2.png' %}" onclick="selectAvatar('skin', this)">
-      <img src="{% static 'main_app/img/avatars/skins/skin3.png' %}" onclick="selectAvatar('skin', this)">
-    </div>
-
-    <strong>Escolha os olhos:</strong>
-    <div class="avatar-options" data-type="eyes">
-      <img src="{% static 'main_app/img/avatars/eyes/eyes1.png' %}" onclick="selectAvatar('eyes', this)" class="selected">
-      <img src="{% static 'main_app/img/avatars/eyes/eyes2.png' %}" onclick="selectAvatar('eyes', this)">
-      <img src="{% static 'main_app/img/avatars/eyes/eyes3.png' %}" onclick="selectAvatar('eyes', this)">
-    </div>
-
-    <strong>Escolha a camiseta:</strong>
-    <div class="avatar-options" data-type="shirt">
-      <img src="{% static 'main_app/img/avatars/shirts/shirt1.png' %}" onclick="selectAvatar('shirt', this)" class="selected">
-      <img src="{% static 'main_app/img/avatars/shirts/shirt2.png' %}" onclick="selectAvatar('shirt', this)">
-      <img src="{% static 'main_app/img/avatars/shirts/shirt3.png' %}" onclick="selectAvatar('shirt', this)">
-    </div>
+<div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <h2 class="text-center mb-4">{% trans "Sign Up" %}</h2>
 
     {% setvar link %}<a href="{{ login_url }}">{% endsetvar %}
     {% setvar end_link %}</a>{% endsetvar %}
 
-    {% element p %}
+    <p class="text-center mb-3">
       {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
+    </p>
 
     {% if not SOCIALACCOUNT_ONLY %}
       {% url 'account_signup' as action_url %}
-      {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-          {% csrf_token %}
-          <input type="hidden" name="hair" id="hairInput" value="{% static 'main_app/img/avatars/hairs/hair1.png' %}">
-          <input type="hidden" name="skin" id="skinInput" value="{% static 'main_app/img/avatars/skins/skin1.png' %}">
-          <input type="hidden" name="eyes" id="eyesInput" value="{% static 'main_app/img/avatars/eyes/eyes1.png' %}">
-          <input type="hidden" name="shirt" id="shirtInput" value="{% static 'main_app/img/avatars/shirts/shirt1.png' %}">
-          
-          <!-- ✅ Campo oculto que receberá a imagem do avatar em base64 -->
-          <input type="hidden" name="avatar_data" id="avatarData">
+      <form method="post" action="{{ action_url }}">
+  {% csrf_token %}
 
-          {% element fields form=form unlabeled=True %}
-          {% endelement %}
-          {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-          {% element button tags="prominent,signup" type="submit" %}
-            {% trans "Sign Up" %}
-          {% endelement %}
-        {% endslot %}
-      {% endelement %}
+  <!-- Campo Email -->
+  <div class="mb-3">
+    {{ form.email }}
+    {{ form.email.errors }}
+  </div>
+
+  <!-- Campo Username -->
+  <div class="mb-3">
+    {{ form.username }}
+    {{ form.username.errors }}
+  </div>
+
+  <!-- Campo Senha (sem help text) -->
+  <div class="mb-3">
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+  </div>
+
+  <!-- Campo Senha (novamente) -->
+  <div class="mb-3">
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+  </div>
+
+  {{ redirect_field }}
+
+  <button type="submit" class="btn btn-primary w-100 mt-2">
+    {% trans "Sign Up" %}
+  </button>
+
+  <div class="mt-3 text-center">
+    <span 
+      data-bs-toggle="tooltip" 
+      data-bs-html="true"
+      title="
+        {% trans 'Sua senha não pode ser muito parecida com suas informações pessoais.' %}<br>
+        {% trans 'Sua senha precisa ter pelo menos 8 caracteres.' %}<br>
+        {% trans 'Sua senha não pode ser uma senha comum.' %}<br>
+        {% trans 'Sua senha não pode ser inteiramente numérica.' %}
+      "
+      style="cursor: pointer; text-decoration: underline; color: #007bff;"
+    >
+      {% trans "Regras de senha" %}
+    </span>
+  </div>
+</form>
     {% endif %}
 
     {% if PASSKEY_SIGNUP_ENABLED %}
-      {% element hr %}{% endelement %}
-      {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
+      <hr>
+      <a href="{{ signup_by_passkey_url }}" class="btn btn-outline-primary w-100 mt-2">
         {% trans "Sign up using a passkey" %}
-      {% endelement %}
+      </a>
     {% endif %}
 
     {% if SOCIALACCOUNT_ENABLED %}
+      <hr>
       {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
   </div>
+</div>
 
-  <script>
-    function selectAvatar(type, imgElement) {
-      const src = imgElement.src;
-      document.getElementById(type + 'Input').value = src;
-      document.getElementById(type + 'Preview').src = src;
-
-      const optionGroups = document.querySelectorAll('.avatar-options');
-      optionGroups.forEach(group => {
-        if (group.dataset.type === type) {
-          group.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
-        }
-      });
-
-      imgElement.classList.add('selected');
-    }
-
-    // ✅ Gera imagem do avatar no canvas
-    function generateAvatarImage() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 300;
-      canvas.height = 300;
-      const ctx = canvas.getContext('2d');
-
-      const layers = [
-        document.getElementById('shirtPreview'),
-        document.getElementById('skinPreview'),
-        document.getElementById('eyesPreview'),
-        document.getElementById('hairPreview')
-      ];
-
-      layers.forEach(layer => {
-        ctx.drawImage(layer, 0, 0, 300, 300);
-      });
-
-      return canvas.toDataURL('image/png');
-    }
-
-    // ✅ Injeta imagem base64 no campo oculto antes de enviar o form
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.querySelector('form');
-      if (form) {
-        form.addEventListener('submit', function () {
-          const avatarData = generateAvatarImage();
-          document.getElementById('avatarData').value = avatarData;
-        });
-      }
-    });
-  </script>
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+</script>
 {% endblock content %}
